@@ -1,30 +1,34 @@
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\config\SecurityConfig.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\controller\AuthController.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\controller\CarritoController.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\controller\CatalogoController.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\controller\CompraController.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\controller\HomeController.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Carrito.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\CarritoItem.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Categoria.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\DetallePedido.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Marca.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Pedido.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Producto.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Rol.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\domain\Usuario.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\Proyecto.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\CarritoRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\CategoriaRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\MarcaRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\PedidoRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\ProductoRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\RolRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\repository\UsuarioRepository.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\CarritoService.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\CategoriaService.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\MarcaService.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\PedidoService.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\ProductoService.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\UserDetailsServiceImpl.java
-C:\Users\brene\OneDrive\Documentos\Avances\Proyecto\src\main\java\com\mycompany\proyecto\service\UsuarioService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\config\CloudinaryConfig.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\config\SecurityConfig.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\AuthController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\CarritoController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\CatalogoController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\CompraController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\HistorialdepedidoController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\HomeController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\controller\ProductoAdminController.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Carrito.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\CarritoItem.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Categoria.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\DetallePedido.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Marca.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Pedido.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Producto.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Rol.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\domain\Usuario.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\Proyecto.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\CarritoRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\CategoriaRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\MarcaRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\PedidoRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\ProductoRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\RolRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\repository\UsuarioRepository.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\CarritoService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\CategoriaService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\CloudinaryService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\MarcaService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\PedidoService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\ProductoService.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\UserDetailsServiceImpl.java
+C:\Users\jurge\Desktop\Avance 2\Project\src\main\java\com\mycompany\proyecto\service\UsuarioService.java

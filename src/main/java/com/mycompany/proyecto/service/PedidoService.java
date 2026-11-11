@@ -99,4 +99,12 @@ public class PedidoService {
     public Optional<Pedido> buscarDeUsuario(Long idPedido, String correo) {
         return pedidoRepository.findByIdAndUsuarioCorreo(idPedido, correo);
     }
+    
+@Transactional(readOnly = true)
+public List<Pedido> consultarHistorial(String correo) {
+
+    return pedidoRepository
+            .findByUsuarioCorreoOrderByFechaDesc(correo);
+}
+
 }

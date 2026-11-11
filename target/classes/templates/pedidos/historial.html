@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+    <header th:replace="~{general/fragmentos :: header}"></header>
+
+    <section class="container mt-4">
+
+        <h2 class="mb-3">Historial de pedidos</h2>
+
+        <p class="text-muted">
+            Consulta tus compras anteriores y el estado actual
+            de cada pedido.
+        </p>
+
+        <div class="alert alert-info"
+             th:if="${#lists.isEmpty(pedidos)}">
+            Todavía no tienes pedidos registrados.
+        </div>
+
+        <div class="table-responsive"
+             th:unless="${#lists.isEmpty(pedidos)}">
+
+            <table class="table align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Fecha</th>
+                        <th>Productos</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="pedido : ${pedidos}">
+
+                        <td th:text="${'#' + pedido.id}"></td>
+
+                        <td th:text="${#temporals.format(
+                            pedido.fecha, 'dd/MM/yyyy HH:mm')}">
+                        </td>
+
+                        <td>
+                            <div th:each="detalle : ${pedido.detalles}">
+
+                                <span th:text="${detalle.producto.nombre}">
+                                </span>
+
+                                <span class="text-muted"
+                                      th:text="${'x' + detalle.cantidad}">
+                                </span>
+
+                            </div>
+                        </td>
+
+                        <td th:text="${'₡' + #numbers.formatDecimal(
+                            pedido.total, 1, 'COMMA', 2, 'POINT')}">
+                        </td>
+
+                        <td>
+                            <span class="badge text-bg-warning"
+                                  th:if="${pedido.estado == 'PENDIENTE'}">
+                                Pendiente
+                            </span>
+
+                            <span class="badge text-bg-primary"
+                                  th:if="${pedido.estado == 'ENVIADO'}">
+                                Enviado
+                            </span>
+
+                            <span class="badge text-bg-success"
+                                  th:if="${pedido.estado == 'ENTREGADO'}">
+                                Entregado
+                            </span>
+
+                            <span class="badge text-bg-secondary"
+                                  th:unless="${pedido.estado == 'PENDIENTE'
+                                  or pedido.estado == 'ENVIADO'
+                                  or pedido.estado == 'ENTREGADO'}"
+                                  th:text="${pedido.estado}">
+                            </span>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               th:href="@{/compra/resumen/{id}
+                               (id=${pedido.id})}">
+                                Ver detalle
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <a th:href="@{/catalogo}"
+           class="btn btn-primary mt-3">
+            Seguir comprando
+        </a>
+
+    </section>
+
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>
+

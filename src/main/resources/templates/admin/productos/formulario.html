@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+    <header th:replace="~{general/fragmentos :: header}"></header>
+
+    <section class="container mt-4">
+
+        <h2 class="mb-3">Información del repuesto</h2>
+
+        <p class="text-muted">
+            Completa la información para registrar
+            o modificar un repuesto.
+        </p>
+
+        <div class="card">
+            <div class="card-body">
+
+               
+              <form th:action="@{/admin/productos/guardar}"
+                    th:object="${producto}"
+                       method="post"
+                         enctype="multipart/form-data">
+ 
+
+                    <input type="hidden" th:field="*{id}">
+
+                    <input type="hidden" th:field="*{activo}">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                Código del repuesto
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{codigo}"
+                                   maxlength="40"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                Nombre del repuesto
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{nombre}"
+                                   maxlength="120"
+                                   required>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">
+                                Descripción
+                            </label>
+
+                            <textarea class="form-control"
+                                      th:field="*{descripcion}"
+                                      rows="3"></textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                Precio en colones
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   th:field="*{precio}"
+                                   min="0.01"
+                                   step="0.01"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                Stock disponible
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   th:field="*{stock}"
+                                   min="0"
+                                   step="1"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                Categoría
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{categoria.id}"
+                                    required>
+
+                                <option value="">
+                                    Seleccione una categoría
+                                </option>
+
+                                <option th:each="categoria : ${categorias}"
+                                        th:value="${categoria.id}"
+                                        th:text="${categoria.nombre}">
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                Marca
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{marca.id}"
+                                    required>
+
+                                <option value="">
+                                    Seleccione una marca
+                                </option>
+
+                                <option th:each="marca : ${marcas}"
+                                        th:value="${marca.id}"
+                                        th:text="${marca.nombre}">
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">
+                                Compatibilidad
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{compatibilidad}"
+                                   maxlength="255"
+                                   placeholder="Ej: Toyota Hilux 2005-2020">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">
+                                URL de la imagen
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{imagenUrl}"
+                                   maxlength="255"
+                                   placeholder="Dirección de la imagen">
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Guardar repuesto
+                        </button>
+
+                        <a th:href="@{/admin/productos}"
+                           class="btn btn-secondary">
+                            Cancelar
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </section>
+
+    <footer th:replace="~{general/fragmentos :: footer}">
+    </footer>
+
+</body>
+</html>

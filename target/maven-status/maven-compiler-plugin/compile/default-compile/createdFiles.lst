@@ -4,6 +4,8 @@ com\mycompany\proyecto\controller\CarritoController.class
 com\mycompany\proyecto\config\SecurityConfig.class
 com\mycompany\proyecto\domain\Rol.class
 com\mycompany\proyecto\service\MarcaService.class
+com\mycompany\proyecto\config\CloudinaryConfig.class
+com\mycompany\proyecto\controller\HistorialdepedidoController.class
 com\mycompany\proyecto\controller\CatalogoController.class
 com\mycompany\proyecto\domain\Pedido.class
 com\mycompany\proyecto\service\PedidoService.class
@@ -13,6 +15,7 @@ com\mycompany\proyecto\repository\RolRepository.class
 com\mycompany\proyecto\repository\UsuarioRepository.class
 com\mycompany\proyecto\controller\AuthController.class
 com\mycompany\proyecto\service\CategoriaService.class
+com\mycompany\proyecto\service\CloudinaryService.class
 com\mycompany\proyecto\domain\Producto.class
 com\mycompany\proyecto\controller\HomeController.class
 com\mycompany\proyecto\domain\DetallePedido.class
@@ -25,6 +28,7 @@ com\mycompany\proyecto\repository\PedidoRepository.class
 com\mycompany\proyecto\repository\CarritoRepository.class
 com\mycompany\proyecto\domain\Usuario.class
 com\mycompany\proyecto\service\CarritoService.class
+com\mycompany\proyecto\controller\ProductoAdminController.class
 com\mycompany\proyecto\domain\Marca.class
 com\mycompany\proyecto\repository\MarcaRepository.class
 com\mycompany\proyecto\controller\CompraController.class

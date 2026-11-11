@@ -6,6 +6,7 @@ package com.mycompany.proyecto.repository;
 import com.mycompany.proyecto.domain.Pedido;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 /**
  *
  * @author brene
@@ -13,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PedidoRepository extends JpaRepository<Pedido, Long>{
     
     Optional<Pedido> findByIdAndUsuarioCorreo(Long id, String correo);
+    List<Pedido> findByUsuarioCorreoOrderByFechaDesc(String correo);
 }

@@ -32,7 +32,7 @@
                             <a class="nav-link" th:href="@{/carrito}">Carrito</a>
                         </li>
                         <li class="nav-item" sec:authorize="hasRole('CLIENTE')">
-                            <a class="nav-link" th:href="@{/pedidos}">Mis pedidos</a>
+                            <a class="nav-link" th:href="@{/pedidos/historial}">Mis pedidos</a>
                         </li>
                         <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                             <a class="nav-link" th:href="@{/admin}">Administración</a>
