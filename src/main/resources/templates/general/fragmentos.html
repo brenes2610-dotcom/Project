@@ -31,6 +31,7 @@
                         <li class="nav-item" sec:authorize="hasRole('CLIENTE')">
                             <a class="nav-link" th:href="@{/carrito}">Carrito</a>
                         </li>
+                        <!-- Falta hacer la página de /pedidos, el link da error -->
                         <li class="nav-item" sec:authorize="hasRole('CLIENTE')">
                             <a class="nav-link" th:href="@{/pedidos}">Mis pedidos</a>
                         </li>
