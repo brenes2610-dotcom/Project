@@ -50,6 +50,7 @@ public class CarritoService {
         }
         Producto producto = productoRepository.findByIdAndActivoTrue(idProducto)
                 .orElseThrow(() -> new IllegalArgumentException("El repuesto no existe"));
+        /*Considerar Usar <=por si el stock se agrega como -1 no se caiga el programa*/
         if (producto.getStock() == 0) {
             throw new IllegalStateException("El repuesto está agotado");
         }

@@ -8,6 +8,7 @@ import jakarta.persistence.*;
  *
  * @author brene
  */
+//Falta Lombok
 @Entity
 @Table(name = "rol")
 public class Rol {
