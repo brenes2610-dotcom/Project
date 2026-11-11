@@ -8,6 +8,7 @@ import jakarta.persistence.*;
  *
  * @author brene
  */
+/*Falta LOMBOK*/
 @Entity
 @Table(name = "usuario")
 public class Usuario {
