@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<section class="container mt-4">
+
+    <h2 class="mb-3">Reporte de ventas</h2>
+
+    <p class="text-muted">
+        Consulte las ventas por período y los
+        repuestos más vendidos.
+    </p>
+
+    <!-- Filtro por fechas -->
+    <form th:action="@{/admin/reportes/ventas}"
+          method="get"
+          class="row g-3 mb-4">
+
+        <div class="col-md-4">
+            <label class="form-label">Fecha inicial</label>
+
+            <input type="date"
+                   name="fechaInicio"
+                   class="form-control"
+                   th:value="${fechaInicio}">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Fecha final</label>
+
+            <input type="date"
+                   name="fechaFin"
+                   class="form-control"
+                   th:value="${fechaFin}">
+        </div>
+
+        <div class="col-md-4 d-flex align-items-end gap-2">
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Filtrar
+            </button>
+
+            <a th:href="@{/admin/reportes/ventas}"
+               class="btn btn-secondary">
+                Limpiar
+            </a>
+
+        </div>
+
+    </form>
+
+    <!-- Resumen de ventas -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h5 class="card-title">Total de ventas</h5>
+
+            <h3 class="text-success"
+                th:text="${'₡' + totalVentas}">
+                ₡0
+            </h3>
+
+            <p class="text-muted mb-0">
+                Total de pedidos no cancelados
+                dentro del período seleccionado.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Repuestos más vendidos -->
+    <h4 class="mb-3">Repuestos más vendidos</h4>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped align-middle">
+
+            <thead>
+                <tr>
+                    <th>Repuesto</th>
+                    <th>Unidades vendidas</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="repuesto : ${repuestosMasVendidos}">
+                    <td th:text="${repuesto.key}"></td>
+                    <td th:text="${repuesto.value}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="alert alert-info"
+         th:if="${#maps.isEmpty(repuestosMasVendidos)}">
+        No hay ventas registradas en el período seleccionado.
+    </div>
+
+    <!-- Pedidos del período -->
+    <h4 class="mt-4 mb-3">Pedidos del período</h4>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped align-middle">
+
+            <thead>
+                <tr>
+                    <th>Pedido</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="pedido : ${pedidos}"
+                    th:if="${pedido.estado != 'CANCELADO'}">
+
+                    <td th:text="${'#' + pedido.id}"></td>
+                    <td th:text="${pedido.fecha}"></td>
+                    <td th:text="${pedido.estado}"></td>
+                    <td th:text="${'₡' + pedido.total}"></td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <a th:href="@{/admin}"
+       class="btn btn-secondary mb-4">
+        Volver a administración
+    </a>
+
+</section>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>

@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.mycompany.proyecto.service.CloudinaryService;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/admin/productos")
@@ -29,21 +27,21 @@ public class ProductoAdminController {
 private final ProductoService productoService;
 private final CategoriaService categoriaService;
 private final MarcaService marcaService;
-private final CloudinaryService cloudinaryService;
+
+
 
 
 
 public ProductoAdminController(
         ProductoService productoService,
         CategoriaService categoriaService,
-        MarcaService marcaService,
-        CloudinaryService cloudinaryService) {
+        MarcaService marcaService) {
 
     this.productoService = productoService;
     this.categoriaService = categoriaService;
     this.marcaService = marcaService;
-    this.cloudinaryService = cloudinaryService;
 }
+
 
 
     @GetMapping
@@ -77,7 +75,7 @@ public ProductoAdminController(
                          RedirectAttributes redirect) {
 
         var producto = productoService.buscarPorId(id);
-
+        
         if (producto.isEmpty()) {
             redirect.addFlashAttribute("error",
                     "El repuesto no existe");
@@ -95,24 +93,16 @@ public ProductoAdminController(
 
     
 
-@PostMapping("/guardar")
-public String guardar(
-        @ModelAttribute Producto producto,
-        @RequestParam(value = "imagenArchivo", required = false)
-        MultipartFile imagenArchivo,
-        RedirectAttributes redirect) {
+       @PostMapping("/guardar")
+        public String guardar(
+                        @ModelAttribute Producto producto,
+                        RedirectAttributes redirect) {
+
 
 
     try {
         
-         if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
-
-           String urlImagen = cloudinaryService.subirImagen(imagenArchivo);
-
-                producto.setImagenUrl(urlImagen);
-}
-
-
+        
         if (producto.getId() != null) {
 
             Producto existente = productoService
@@ -145,11 +135,12 @@ if (producto.getImagenUrl() != null
         redirect.addFlashAttribute("mensaje",
                 "Repuesto guardado correctamente");
 
-    } catch (Exception e) {
+    }catch (Exception e) {
+    e.printStackTrace();
 
-        redirect.addFlashAttribute("error",
-                "No fue posible guardar el repuesto");
-    }
+    redirect.addFlashAttribute("error",
+            "No fue posible guardar el repuesto");
+}
 
     return "redirect:/admin/productos";
 }

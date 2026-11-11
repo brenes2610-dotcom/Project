@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<section class="container mt-4">
+
+    <h2 class="mb-3">Control de inventario</h2>
+     
+       <div class="alert alert-success"
+         th:if="${mensaje}"
+         th:text="${mensaje}">
+      </div>
+
+     <div class="alert alert-danger"
+     th:if="${error}"
+     th:text="${error}">
+    </div>
+ 
+    <p class="text-muted">
+        Consulte las existencias de los repuestos
+        y verifique los productos con stock bajo.
+    </p>
+
+    <div class="alert alert-warning">
+        Los productos con 5 unidades o menos
+        se consideran de stock bajo.
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped align-middle">
+
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Repuesto</th>
+                    <th>Categoría</th>
+                    <th>Marca</th>
+                    <th>Stock actual</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr th:each="producto : ${productos}">
+
+                    <td th:text="${producto.codigo}"></td>
+
+                    <td th:text="${producto.nombre}"></td>
+
+                    <td th:text="${producto.categoria.nombre}"></td>
+
+                    <td th:text="${producto.marca.nombre}"></td>
+
+                    <td th:text="${producto.stock}"></td>
+
+                    <td>
+                        <span class="badge bg-danger"
+                              th:if="${producto.stock == 0}">
+                            Agotado
+                        </span>
+
+                        <span class="badge bg-warning text-dark"
+                              th:if="${producto.stock > 0 and producto.stock <= 5}">
+                            Stock bajo
+                        </span>
+
+                        <span class="badge bg-success"
+                              th:if="${producto.stock > 5}">
+                            Disponible
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="alert alert-info"
+         th:if="${#lists.isEmpty(productos)}">
+        No hay repuestos registrados.
+    </div>
+
+<div class="card mt-4 mb-4">
+
+    <div class="card-body">
+
+        <h4 class="mb-3">Registrar movimiento de inventario</h4>
+
+        <form th:action="@{/inventario/registrar}" method="post">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <label class="form-label">Repuesto</label>
+
+                    <select name="productoId"
+                            class="form-select"
+                            required>
+
+                        <option value="">Seleccione un repuesto</option>
+
+                        <option th:each="producto : ${productos}"
+                                th:value="${producto.id}"
+                                th:text="${producto.codigo + ' - ' + producto.nombre}">
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Tipo de movimiento</label>
+
+                    <select name="tipo"
+                            class="form-select"
+                            required>
+
+                        <option value="">Seleccione una opción</option>
+                        <option value="ENTRADA">Entrada de mercadería</option>
+                        <option value="AJUSTE">Ajuste de stock</option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Cantidad</label>
+
+                    <input type="number"
+                           name="cantidad"
+                           class="form-control"
+                           min="0"
+                           required>
+
+                    <div class="form-text">
+                        Entrada: unidades a sumar.
+                        Ajuste: existencia final.
+                    </div>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+                        Registrar
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<a class="btn btn-secondary mb-4"
+   th:href="@{/inventario/historial}">
+    Ver historial de movimientos
+</a>
+
+</section>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>

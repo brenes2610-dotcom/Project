@@ -37,6 +37,8 @@ public class SecurityConfig {
                 .requestMatchers("/login", "/registro", "/", "/catalogo/**", "/consultas/**",
                                 "/webjars/**", "/css/**", "/js/**", "/img/**").permitAll()
                 .requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/inventario", "/inventario/**")
+                    .hasAnyRole("ADMIN", "ENCARGADO")
                 .requestMatchers("/carrito/**").hasRole("CLIENTE")
                 .requestMatchers("/compra/**").hasRole("CLIENTE")
                 .anyRequest().authenticated())

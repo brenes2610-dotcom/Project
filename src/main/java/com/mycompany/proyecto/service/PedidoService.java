@@ -107,4 +107,57 @@ public List<Pedido> consultarHistorial(String correo) {
             .findByUsuarioCorreoOrderByFechaDesc(correo);
 }
 
+@Transactional(readOnly = true)
+public List<Pedido> listarPedidos(String estado,
+        LocalDateTime fechaInicio,
+        LocalDateTime fechaFin) {
+
+    boolean tieneEstado = estado != null && !estado.isBlank();
+    boolean tieneFechas = fechaInicio != null && fechaFin != null;
+
+    if (tieneEstado && tieneFechas) {
+        return pedidoRepository
+                .findByEstadoAndFechaBetweenOrderByFechaDesc(
+                        estado, fechaInicio, fechaFin);
+    }
+
+    if (tieneEstado) {
+        return pedidoRepository
+                .findByEstadoOrderByFechaDesc(estado);
+    }
+
+    if (tieneFechas) {
+        return pedidoRepository
+                .findByFechaBetweenOrderByFechaDesc(
+                        fechaInicio, fechaFin);
+    }
+
+    return pedidoRepository.findAllByOrderByFechaDesc();
+}
+
+@Transactional
+public void cambiarEstado(Long idPedido, String nuevoEstado) {
+
+    List<String> estadosPermitidos = List.of(
+            "PENDIENTE",
+            "EN_PREPARACION",
+            "ENVIADO",
+            "ENTREGADO",
+            "CANCELADO"
+    );
+
+    if (nuevoEstado == null
+            || !estadosPermitidos.contains(nuevoEstado)) {
+        throw new IllegalArgumentException(
+                "El estado seleccionado no es válido");
+    }
+
+    Pedido pedido = pedidoRepository.findById(idPedido)
+            .orElseThrow(() -> new IllegalArgumentException(
+                    "El pedido no existe"));
+
+    pedido.setEstado(nuevoEstado);
+    pedidoRepository.save(pedido);
+}
+
 }

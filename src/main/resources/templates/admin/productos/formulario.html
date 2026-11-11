@@ -21,15 +21,17 @@
             <div class="card-body">
 
                
-              <form th:action="@{/admin/productos/guardar}"
-                    th:object="${producto}"
-                       method="post"
-                         enctype="multipart/form-data">
- 
+              
+                <form th:action="@{/admin/productos/guardar}"
+                                th:object="${producto}"
+                             method="post">
 
-                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden"
+                          name="id"
+                          th:value="${producto.id}">
 
-                    <input type="hidden" th:field="*{activo}">
+                     <input type="hidden" th:field="*{activo}">
+
 
                     <div class="row g-3">
 
