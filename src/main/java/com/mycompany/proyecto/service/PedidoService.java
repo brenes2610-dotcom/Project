@@ -63,6 +63,7 @@ public class PedidoService {
         pedido.setDireccionEntrega(direccionEntrega.trim());
         pedido.setMetodoPago(metodoPago);
 
+        // Aqui existe una Condición de carrera: si dos clientes compran el mismo repuesto al mismo tiempo, se puede vender más de lo que hay en stock
         BigDecimal total = BigDecimal.ZERO;
         for (CarritoItem item : carrito.getItems()) {
             Producto producto = productoRepository.findById(item.getProducto().getId())
