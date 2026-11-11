@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+    <header th:replace="~{general/fragmentos :: header}"></header>
+
+    <section class="container mt-4">
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+        <a th:href="@{/catalogo}" class="btn btn-link px-0 mb-3">&larr; Volver al catálogo</a>
+
+        <div class="row g-4">
+            <div class="col-md-5">
+                <div class="position-relative bg-light d-flex align-items-center justify-content-center rounded"
+                     style="height:320px;">
+                    <i class="fa-solid fa-image fa-4x text-secondary"></i>
+                    <img th:if="${!#strings.isEmpty(repuesto.imagenUrl)}" th:src="${repuesto.imagenUrl}"
+                         th:alt="${repuesto.nombre}"
+                         class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded"
+                         onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <h2 th:text="${repuesto.nombre}"></h2>
+                <p class="text-muted mb-2">Código: <span th:text="${repuesto.codigo}"></span></p>
+                <p>
+                    <span class="badge text-bg-secondary" th:text="${repuesto.categoria.nombre}"></span>
+                    <span class="badge text-bg-dark" th:text="${repuesto.marca.nombre}"></span>
+                </p>
+
+                <p class="fs-3 fw-bold"
+                   th:text="${'₡' + #numbers.formatDecimal(repuesto.precio, 1, 'COMMA', 2, 'POINT')}"></p>
+
+                <p th:if="${repuesto.stock > 0}">
+                    <span class="badge text-bg-success">Disponible</span>
+                    <span th:text="${repuesto.stock + ' unidades en stock'}"></span>
+                </p>
+                <p th:if="${repuesto.stock == 0}">
+                    <span class="badge text-bg-danger">Agotado</span>
+                </p>
+
+                <h5 class="mt-4">Compatibilidad</h5>
+                <p th:text="${repuesto.compatibilidad}"></p>
+
+                <h5>Descripción</h5>
+                <p th:text="${repuesto.descripcion}"></p>
+
+                <div th:if="${repuesto.stock > 0}" sec:authorize="hasRole('CLIENTE')">
+                    <form th:action="@{/carrito/agregar}" method="post" class="d-flex gap-2">
+                        <input type="hidden" name="idProducto" th:value="${repuesto.id}">
+                        <input type="number" name="cantidad" value="1" min="1"
+                               th:max="${repuesto.stock}" class="form-control" style="width:100px">
+                        <button type="submit" class="btn btn-warning btn-lg">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </form>
+                </div>
+                <button type="button" class="btn btn-secondary btn-lg" disabled
+                        th:if="${repuesto.stock == 0}">Agotado</button>
+                <a th:href="@{/login}" class="btn btn-outline-primary"
+                   sec:authorize="!isAuthenticated()">Iniciá sesión para comprar</a>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+</body>
+</html>

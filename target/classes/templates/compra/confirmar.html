@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+    <header th:replace="~{general/fragmentos :: header}"></header>
+
+    <section class="container mt-4">
+        <h2 class="mb-3">Confirmar compra</h2>
+
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <h5>Resumen del carrito</h5>
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Repuesto</th>
+                            <th>Cant.</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="i : ${carrito.items}">
+                            <td th:text="${i.producto.nombre}"></td>
+                            <td th:text="${i.cantidad}"></td>
+                            <td class="text-end"
+                                th:text="${'₡' + #numbers.formatDecimal(i.subtotal, 1, 'COMMA', 2, 'POINT')}"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2" class="text-end">Total</th>
+                            <th class="text-end fs-5"
+                                th:text="${'₡' + #numbers.formatDecimal(carrito.total, 1, 'COMMA', 2, 'POINT')}"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="col-lg-5">
+                <h5>Datos de entrega y pago</h5>
+                <form th:action="@{/compra/confirmar}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Dirección de entrega</label>
+                        <textarea name="direccionEntrega" class="form-control" rows="3"
+                                  maxlength="255" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Método de pago</label>
+                        <select name="metodoPago" class="form-select" required>
+                            <option value="">Seleccioná una opción</option>
+                            <option th:each="m : ${metodosPago}" th:value="${m}" th:text="${m}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-lg w-100">Confirmar pedido</button>
+                    <a th:href="@{/carrito}" class="btn btn-link w-100 mt-2">Volver al carrito</a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+</body>
+</html>
